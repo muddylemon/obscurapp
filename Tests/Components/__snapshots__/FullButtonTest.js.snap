@@ -12,10 +12,10 @@ exports[`FullButton component renders correctly 1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     Object {
-      "backgroundColor": "#161616",
-      "borderBottomColor": "#CCCCCC",
+      "backgroundColor": "#5F3E63",
+      "borderBottomColor": "#595959",
       "borderBottomWidth": 1,
-      "borderTopColor": "rgba(164, 0, 48, 0.5)",
+      "borderTopColor": "#595959",
       "borderTopWidth": 1,
       "marginVertical": 5,
       "opacity": 1,
@@ -25,7 +25,7 @@ exports[`FullButton component renders correctly 1`] = `
   <Text
     style={
       Object {
-        "color": "white",
+        "color": "#F7F7F7",
         "fontFamily": "Avenir-Black",
         "fontSize": 14,
         "margin": 18,
