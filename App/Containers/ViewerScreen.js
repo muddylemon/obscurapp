@@ -3,7 +3,6 @@ import { Image, View, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { ImageSelectors } from '../Redux/ImageRedux';
 import styles from './Styles/ViewerScreenStyle';
-import ApplicationStyles from '../Themes/ApplicationStyles';
 
 import { RNCamera } from 'react-native-camera';
 import RoundedButton from '../Components/RoundedButton';
@@ -24,17 +23,14 @@ class ViewerScreen extends Component {
           captureAudio={false}
           ref={this.ref}
           type={RNCamera.Constants.Type.back}
-          style={{
-            width: '100%',
-            height: '100%',
-          }}
+          style={styles.backgroundImage}
         >
           <View style={styles.closeButton}>
             <RoundedButton text="x" onPress={this.goBack} />
           </View>
           <Image
             style={{
-              ...ApplicationStyles.backgroundImage,
+              ...styles.backgroundImage,
               height: (width / image.width) * image.height,
               width: width,
               opacity: 0.5,

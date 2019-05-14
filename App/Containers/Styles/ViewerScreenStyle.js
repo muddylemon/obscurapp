@@ -9,7 +9,7 @@ export default StyleSheet.create({
   },
   closeButton: {
     position: 'absolute',
-    top: Metrics.doubleBaseMargin + 45,
+    top: Metrics.doubleBaseMargin,
     right: Metrics.baseMargin,
     zIndex: 9999,
   },

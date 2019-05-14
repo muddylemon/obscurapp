@@ -7,6 +7,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import ImageActions, { ImageSelectors } from '../Redux/ImageRedux';
 import FullButton from '../Components/FullButton';
 import styles from './Styles/LaunchScreenStyles';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const { width, height } = Dimensions.get('window');
 
@@ -28,7 +29,18 @@ export class LaunchScreen extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.heading}>obscur</Text>
-        <FullButton text="Select An Image" onPress={this.picker} />
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>
+            To get started, choose an image to superimpose on reality
+          </Text>
+          <FullButton text="Select An Image" onPress={this.picker} />
+        </View>
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Recent Images</Text>
+          <ScrollView>
+            <Text>And some pictures go here....</Text>
+          </ScrollView>
+        </View>
       </View>
     );
   }
