@@ -1,32 +1,55 @@
-import React, { Component } from 'react'
-import { ScrollView, Text, KeyboardAvoidingView } from 'react-native'
-import { connect } from 'react-redux'
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+import React, { Component } from 'react';
+import { Image, View, Dimensions } from 'react-native';
+import { connect } from 'react-redux';
+import { ImageSelectors } from '../Redux/ImageRedux';
+import styles from './Styles/ViewerScreenStyle';
+import ApplicationStyles from '../Themes/ApplicationStyles';
 
-// Styles
-import styles from './Styles/ViewerScreenStyle'
+import { RNCamera } from 'react-native-camera';
+import RoundedButton from '../Components/RoundedButton';
+
+const { width } = Dimensions.get('window');
 
 class ViewerScreen extends Component {
-  render () {
+  ref = cam => (this.camera = cam);
+  goBack = () => {
+    this.props.navigation.navigate('LaunchScreen');
+  };
+  render() {
+    const { image } = this.props;
+
     return (
-      <ScrollView style={styles.container}>
-        <KeyboardAvoidingView behavior='position'>
-          <Text>ViewerScreen</Text>
-        </KeyboardAvoidingView>
-      </ScrollView>
-    )
+      <View style={styles.container}>
+        <RNCamera
+          captureAudio={false}
+          ref={this.ref}
+          type={RNCamera.Constants.Type.back}
+          style={{
+            width: '100%',
+            height: '100%',
+          }}
+        >
+          <View style={styles.closeButton}>
+            <RoundedButton text="x" onPress={this.goBack} />
+          </View>
+          <Image
+            style={{
+              ...ApplicationStyles.backgroundImage,
+              height: (width / image.width) * image.height,
+              width: width,
+              opacity: 0.5,
+            }}
+            source={{ uri: `data:${image.mime};base64,${image.data}` }}
+          />
+        </RNCamera>
+      </View>
+    );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ViewerScreen)
+export default connect(
+  state => ({
+    image: ImageSelectors.getImage(state),
+  }),
+  null
+)(ViewerScreen);

@@ -1,29 +1,44 @@
-import React, { Component } from 'react'
-import { ScrollView, Text, Image, View } from 'react-native'
-import { Images } from '../Themes'
+import React, { Component } from 'react';
+import { Text, View, Dimensions } from 'react-native';
+import { connect } from 'react-redux';
 
-// Styles
-import styles from './Styles/LaunchScreenStyles'
+import ImagePicker from 'react-native-image-crop-picker';
 
-export default class LaunchScreen extends Component {
-  render () {
+import ImageActions, { ImageSelectors } from '../Redux/ImageRedux';
+import FullButton from '../Components/FullButton';
+import styles from './Styles/LaunchScreenStyles';
+
+const { width, height } = Dimensions.get('window');
+
+const pickerOptions = {
+  width: width,
+  height: height,
+  cropping: true,
+  mediaType: 'photo',
+  includeBase64: true,
+};
+
+export class LaunchScreen extends Component {
+  picker = () =>
+    ImagePicker.openPicker(pickerOptions).then(image => {
+      this.props.pickImage(image);
+      this.props.navigation.navigate('ViewerScreen');
+    });
+  render() {
     return (
-      <View style={styles.mainContainer}>
-        <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
-        <ScrollView style={styles.container}>
-          <View style={styles.centered}>
-            <Image source={Images.launch} style={styles.logo} />
-          </View>
-
-          <View style={styles.section} >
-            <Image source={Images.ready} />
-            <Text style={styles.sectionText}>
-              This probably isn't what your app is going to look like. Unless your designer handed you this screen and, in that case, congrats! You're ready to ship. For everyone else, this is where you'll see a live preview of your fully functioning app using Ignite.
-            </Text>
-          </View>
-
-        </ScrollView>
+      <View style={styles.container}>
+        <Text style={styles.heading}>obscur</Text>
+        <FullButton text="Select An Image" onPress={this.picker} />
       </View>
-    )
+    );
   }
 }
+
+export default connect(
+  state => ({
+    image: ImageSelectors.getImage(state),
+  }),
+  dispatch => ({
+    pickImage: image => dispatch(ImageActions.pickImage(image)),
+  })
+)(LaunchScreen);

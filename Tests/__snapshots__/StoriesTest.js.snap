@@ -136,9 +136,9 @@ exports[`Storyshots FullButton Custom Style 1`] = `
   style={
     Object {
       "backgroundColor": "blue",
-      "borderBottomColor": "#fb5f26",
+      "borderBottomColor": "#CCCCCC",
       "borderBottomWidth": 1,
-      "borderTopColor": "#e73536",
+      "borderTopColor": "rgba(164, 0, 48, 0.5)",
       "borderTopWidth": 1,
       "marginVertical": 5,
       "opacity": 1,
@@ -173,10 +173,10 @@ exports[`Storyshots FullButton Default 1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     Object {
-      "backgroundColor": "rgba(164, 0, 48, 0.5)",
-      "borderBottomColor": "#fb5f26",
+      "backgroundColor": "#161616",
+      "borderBottomColor": "#CCCCCC",
       "borderBottomWidth": 1,
-      "borderTopColor": "#e73536",
+      "borderTopColor": "rgba(164, 0, 48, 0.5)",
       "borderTopWidth": 1,
       "marginVertical": 5,
       "opacity": 1,
@@ -212,12 +212,13 @@ exports[`Storyshots RoundedButton Default 1`] = `
   style={
     Object {
       "backgroundColor": "#e73536",
-      "borderRadius": 5,
+      "borderRadius": 45,
       "height": 45,
       "justifyContent": "center",
       "marginHorizontal": 25,
       "marginVertical": 10,
       "opacity": 1,
+      "width": 45,
     }
   }
 >
@@ -250,12 +251,13 @@ exports[`Storyshots RoundedButton Text as children 1`] = `
   style={
     Object {
       "backgroundColor": "#e73536",
-      "borderRadius": 5,
+      "borderRadius": 45,
       "height": 45,
       "justifyContent": "center",
       "marginHorizontal": 25,
       "marginVertical": 10,
       "opacity": 1,
+      "width": 45,
     }
   }
 >

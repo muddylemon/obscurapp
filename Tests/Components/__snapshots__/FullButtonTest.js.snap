@@ -12,10 +12,10 @@ exports[`FullButton component renders correctly 1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     Object {
-      "backgroundColor": "rgba(164, 0, 48, 0.5)",
-      "borderBottomColor": "#fb5f26",
+      "backgroundColor": "#161616",
+      "borderBottomColor": "#CCCCCC",
       "borderBottomWidth": 1,
-      "borderTopColor": "#e73536",
+      "borderTopColor": "rgba(164, 0, 48, 0.5)",
       "borderTopWidth": 1,
       "marginVertical": 5,
       "opacity": 1,

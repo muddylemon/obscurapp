@@ -13,12 +13,13 @@ exports[`RoundedButton component renders correctly 1`] = `
   style={
     Object {
       "backgroundColor": "#e73536",
-      "borderRadius": 5,
+      "borderRadius": 45,
       "height": 45,
       "justifyContent": "center",
       "marginHorizontal": 25,
       "marginVertical": 10,
       "opacity": 1,
+      "width": 45,
     }
   }
 >
@@ -51,12 +52,13 @@ exports[`RoundedButton component with children renders correctly 1`] = `
   style={
     Object {
       "backgroundColor": "#e73536",
-      "borderRadius": 5,
+      "borderRadius": 45,
       "height": 45,
       "justifyContent": "center",
       "marginHorizontal": 25,
       "marginVertical": 10,
       "opacity": 1,
+      "width": 45,
     }
   }
 >

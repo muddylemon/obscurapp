@@ -7,6 +7,7 @@ import ReduxPersist from '../Config/ReduxPersist'
 /* ------------- Assemble The Reducers ------------- */
 export const reducers = combineReducers({
   nav: require('./NavigationRedux').reducer,
+  image: require('./ImageRedux').reducer,
   github: require('./GithubRedux').reducer,
   search: require('./SearchRedux').reducer
 })
@@ -19,7 +20,10 @@ export default () => {
     finalReducers = persistReducer(persistConfig, reducers)
   }
 
-  let { store, sagasManager, sagaMiddleware } = configureStore(finalReducers, rootSaga)
+  let { store, sagasManager, sagaMiddleware } = configureStore(
+    finalReducers,
+    rootSaga
+  )
 
   if (module.hot) {
     module.hot.accept(() => {
