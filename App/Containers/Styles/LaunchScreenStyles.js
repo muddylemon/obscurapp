@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native';
-import { Metrics, ApplicationStyles } from '../../Themes/';
-import colors from '../../Themes/Colors';
+import { StyleSheet } from 'react-native'
+import { Metrics, ApplicationStyles } from '../../Themes/'
+import colors from '../../Themes/Colors'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
@@ -9,19 +9,19 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
     paddingTop: Metrics.doubleBaseMargin,
     paddingBottom: Metrics.baseMargin,
-    backgroundColor: colors.snow,
+    backgroundColor: colors.snow
   },
   heading: {
     fontSize: 40,
-    fontFamily: 'Avenir',
+    fontFamily: 'Avenir'
   },
   logo: {
     marginTop: Metrics.doubleSection,
     height: Metrics.images.logo,
     width: Metrics.images.logo,
-    resizeMode: 'contain',
+    resizeMode: 'contain'
   },
   centered: {
-    alignItems: 'center',
-  },
-});
+    alignItems: 'center'
+  }
+})
