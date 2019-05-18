@@ -1,16 +1,28 @@
 import { StyleSheet } from 'react-native'
-import { ApplicationStyles, Metrics } from '../../Themes/'
+import { ApplicationStyles } from '../../Themes/'
+import colors from '../../Themes/Colors'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
   container: {
     ...ApplicationStyles.screen.mainContainer,
+    backgroundColor: colors.snow,
     height: '100%'
   },
   closeButton: {
     position: 'absolute',
-    top: Metrics.doubleBaseMargin,
-    right: Metrics.baseMargin,
+    top: 4,
+    right: 4,
     zIndex: 9999
+  },
+  captureButton: {
+    flex: 0,
+    position: 'absolute',
+    borderRadius: 5,
+    padding: 15,
+    paddingHorizontal: 20,
+    alignSelf: 'center',
+    bottom: 0,
+    margin: 20
   }
 })

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Image, View, Dimensions } from 'react-native';
+import { Image, View, Dimensions, Animated } from 'react-native';
 import {
   PanGestureHandler,
-  TapGestureHandler,
+  TouchableHighlight,
 } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 import { ImageSelectors } from '../Redux/ImageRedux';
@@ -10,55 +10,117 @@ import styles from './Styles/ViewerScreenStyle';
 
 import { RNCamera } from 'react-native-camera';
 import RoundedButton from '../Components/RoundedButton';
+import { Icon, Button } from 'react-native-elements';
+import colors from '../Themes/Colors';
 
 const { width, height } = Dimensions.get('window');
+const pictureOptions = {
+  quality: 0.8,
+  base64: true,
+  exif: true,
+  orientation: 'portrait',
+  forceUpOrientation: true,
+  fixOrientation: true,
+};
 
 class ViewerScreen extends Component {
-  state = {
-    opacity: 0.5,
-  };
+  constructor(props) {
+    super(props);
+    this.state = { preview: null };
+    this.tapRef = React.createRef();
+    this.panRef = React.createRef();
+    this._opacity = new Animated.Value(0.5);
+  }
+
   ref = cam => (this.camera = cam);
+
   goBack = () => {
     this.props.navigation.navigate('LaunchScreen');
   };
+
   onPanGestureEvent = ev => {
     const opacity = 1 - ev.nativeEvent.absoluteY / height;
-    this.setState({ opacity });
+    this._opacity.setValue(opacity);
   };
-  onSingleTap = ev => {
-    console.log({ ev });
+
+  onSingleTap = async () => {
+    if (this.state.preview) {
+      this.setState({ preview: null });
+      this.camera.resumePreview();
+      return;
+    }
+    this.takePicture();
   };
+
+  takePicture = async function() {
+    if (this.camera) {
+      const preview = await this.camera.takePictureAsync(pictureOptions);
+      this.setState({ preview });
+    }
+  };
+
   render() {
     const { image } = this.props;
 
     return (
       <View style={styles.container}>
         <RNCamera
+          pauseAfterCapture
           captureAudio={false}
           ref={this.ref}
           type={RNCamera.Constants.Type.back}
           style={styles.backgroundImage}
         >
-          <View style={styles.closeButton}>
-            <RoundedButton text="x" onPress={this.goBack} />
-          </View>
-          <TapGestureHandler onHandlerStateChange={this.onSingleTap}>
+          {this.state.preview && (
+            <Image
+              source={{
+                uri: `data:img/jpg;base64,${this.state.preview.base64}`,
+              }}
+              style={{
+                ...styles.backgroundImage,
+                height: height,
+                width: width,
+              }}
+            />
+          )}
+          <Animated.View>
             <PanGestureHandler
-              minDist={20}
+              ref={this.panRef}
+              activeOffsetX={[-20, 20]}
               onGestureEvent={this.onPanGestureEvent}
             >
-              <Image
+              <Animated.Image
                 style={{
                   ...styles.backgroundImage,
                   height: (width / image.width) * image.height,
                   width: width,
-                  opacity: this.state.opacity,
-                  resizeMode: 'contain',
+                  opacity: this._opacity,
+                  resizeMode: 'cover',
                 }}
                 source={{ uri: `data:${image.mime};base64,${image.data}` }}
               />
             </PanGestureHandler>
-          </TapGestureHandler>
+          </Animated.View>
+          <View style={styles.closeButton}>
+            <TouchableHighlight onPress={this.goBack}>
+              <Icon
+                name="arrow-left"
+                type="feather"
+                size={25}
+                color={colors.bloodOrange}
+              />
+            </TouchableHighlight>
+          </View>
+          <View style={styles.captureButton}>
+            <Button
+              title="Pause"
+              type="outline"
+              onPress={this.onSingleTap}
+              icon={
+                <Icon name="pause" type="feather" size={25} color="#517fa4" />
+              }
+            />
+          </View>
         </RNCamera>
       </View>
     );

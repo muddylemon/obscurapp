@@ -1,33 +1,31 @@
 import { createReducer, createActions } from 'reduxsauce'
-import Immutable from 'seamless-immutable'
+import { List } from 'immutable'
 
 const { Types, Creators } = createActions({
   pickImage: ['image'],
-  unsetImage: null,
-  updateOpacity: ['opacity']
+  unsetImage: null
 })
 
 export const ImageTypes = Types
 export default Creators
 
-export const INITIAL_STATE = Immutable({
+export const INITIAL_STATE = {
   image: {},
-  opacity: 0.5
-})
+  recent: List()
+}
 
 export const ImageSelectors = {
   getImage: state => state.image.image,
-  getOpacity: state => state.image.opacity
+  getRecent: state => state.image.recent
 }
 
-export const pickImage = (state, { image }) => state.merge({ image })
+export const pickImage = (state, { image }) => {
+  return { ...state, image }
+}
 
 export const unsetImage = state => state.merge({ image: null })
 
-export const updateOpacity = (state, { opacity }) => state.merge({ opacity })
-
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.PICK_IMAGE]: pickImage,
-  [Types.UNSET_IMAGE]: unsetImage,
-  [Types.UPDATE_OPACITY]: updateOpacity
+  [Types.UNSET_IMAGE]: unsetImage
 })
