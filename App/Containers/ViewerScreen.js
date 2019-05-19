@@ -9,7 +9,6 @@ import { ImageSelectors } from '../Redux/ImageRedux';
 import styles from './Styles/ViewerScreenStyle';
 
 import { RNCamera } from 'react-native-camera';
-import RoundedButton from '../Components/RoundedButton';
 import { Icon, Button } from 'react-native-elements';
 import colors from '../Themes/Colors';
 
@@ -106,6 +105,7 @@ class ViewerScreen extends Component {
               <Icon
                 name="arrow-left"
                 type="feather"
+                reverse
                 size={25}
                 color={colors.bloodOrange}
               />
