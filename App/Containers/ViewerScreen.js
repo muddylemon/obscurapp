@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { Image, View, Dimensions, Animated } from 'react-native';
-import {
-  PanGestureHandler,
-  TouchableHighlight,
-} from 'react-native-gesture-handler';
+import { View, Dimensions, Animated } from 'react-native';
+import { PanGestureHandler } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 import { ImageSelectors } from '../Redux/ImageRedux';
 import styles from './Styles/ViewerScreenStyle';
@@ -11,7 +8,7 @@ import styles from './Styles/ViewerScreenStyle';
 import { RNCamera } from 'react-native-camera';
 import { Icon, Button } from 'react-native-elements';
 import colors from '../Themes/Colors';
-
+import PreviewImage from '../Components/PreviewImage';
 const { width, height } = Dimensions.get('window');
 const pictureOptions = {
   quality: 0.8,
@@ -70,21 +67,11 @@ class ViewerScreen extends Component {
           type={RNCamera.Constants.Type.back}
           style={styles.backgroundImage}
         >
-          {this.state.preview && (
-            <Image
-              source={{
-                uri: `data:img/jpg;base64,${this.state.preview.base64}`,
-              }}
-              style={{
-                ...styles.backgroundImage,
-                height: height,
-                width: width,
-              }}
-            />
-          )}
+          {this.state.preview && <PreviewImage preview={this.state.preview} />}
           <Animated.View>
             <PanGestureHandler
               ref={this.panRef}
+              minDist={10}
               activeOffsetX={[-20, 20]}
               onGestureEvent={this.onPanGestureEvent}
             >
@@ -101,15 +88,14 @@ class ViewerScreen extends Component {
             </PanGestureHandler>
           </Animated.View>
           <View style={styles.closeButton}>
-            <TouchableHighlight onPress={this.goBack}>
-              <Icon
-                name="arrow-left"
-                type="feather"
-                reverse
-                size={25}
-                color={colors.bloodOrange}
-              />
-            </TouchableHighlight>
+            <Icon
+              name="arrow-left"
+              type="feather"
+              reverse
+              size={25}
+              color={colors.bloodOrange}
+              onPress={this.goBack}
+            />
           </View>
           <View style={styles.captureButton}>
             <Button
