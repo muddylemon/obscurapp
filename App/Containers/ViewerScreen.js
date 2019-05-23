@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Dimensions, Animated } from 'react-native';
+import { View, Dimensions, Animated, Image } from 'react-native';
 import { PanGestureHandler } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 import { ImageSelectors } from '../Redux/ImageRedux';
@@ -8,8 +8,12 @@ import styles from './Styles/ViewerScreenStyle';
 import { RNCamera } from 'react-native-camera';
 import { Icon, Button } from 'react-native-elements';
 import colors from '../Themes/Colors';
-import PreviewImage from '../Components/PreviewImage';
+
 const { width, height } = Dimensions.get('window');
+
+const makeURI = ({ mime, base64 = null, data = null }) =>
+  `data:${mime};base64,${base64 || data}`;
+
 const pictureOptions = {
   quality: 0.8,
   base64: true,
@@ -67,7 +71,18 @@ class ViewerScreen extends Component {
           type={RNCamera.Constants.Type.back}
           style={styles.backgroundImage}
         >
-          {this.state.preview && <PreviewImage preview={this.state.preview} />}
+          {this.state.preview && (
+            <Image
+              source={{
+                uri: makeURI(this.state.preview),
+              }}
+              style={{
+                ...styles.backgroundImage,
+                height: height,
+                width: width,
+              }}
+            />
+          )}
           <Animated.View>
             <PanGestureHandler
               ref={this.panRef}
@@ -83,7 +98,7 @@ class ViewerScreen extends Component {
                   opacity: this._opacity,
                   resizeMode: 'cover',
                 }}
-                source={{ uri: `data:${image.mime};base64,${image.data}` }}
+                source={{ uri: makeURI(image) }}
               />
             </PanGestureHandler>
           </Animated.View>
@@ -92,7 +107,7 @@ class ViewerScreen extends Component {
               name="arrow-left"
               type="feather"
               reverse
-              size={25}
+              size={15}
               color={colors.bloodOrange}
               onPress={this.goBack}
             />

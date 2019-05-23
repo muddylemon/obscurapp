@@ -7,7 +7,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import colors from '../Themes/Colors';
 import ImageActions, { ImageSelectors } from '../Redux/ImageRedux';
 import styles from './Styles/LaunchScreenStyles';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 
 const { width, height } = Dimensions.get('window');
 
@@ -23,28 +23,30 @@ const pickerOptions = {
 export class LaunchScreen extends Component {
   picker = () =>
     ImagePicker.openPicker(pickerOptions)
-      .then(image => {
-        this.props.pickImage(image);
-        this.props.navigation.navigate('ViewerScreen');
-      })
+      .then(this.pick)
       .catch(e => console.log({ e }));
 
+  pick = image => {
+    this.props.pickImage(image);
+    this.props.navigation.navigate('ViewerScreen');
+  };
+
   renderRecent = () => {
-    console.log(this.props);
     if (!this.props.recent || !this.props.recent.length) {
       return <Text>No recent images</Text>;
     }
     return this.props.recent.map(r => (
-      <Image
-        key={v4()}
-        source={{ uri: r.path }}
-        style={{
-          width: 100,
-          height: 100,
-          margin: 2,
-          resizeMode: 'cover',
-        }}
-      />
+      <TouchableOpacity key={v4()} onPress={() => this.pick(r)}>
+        <Image
+          source={{ uri: r.path }}
+          style={{
+            width: 100,
+            height: 100,
+            margin: 2,
+            resizeMode: 'cover',
+          }}
+        />
+      </TouchableOpacity>
     ));
   };
 
