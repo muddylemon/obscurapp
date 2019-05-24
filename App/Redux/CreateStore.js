@@ -27,9 +27,7 @@ export default rootReducer => {
 
   enhancers.push(applyMiddleware(...middleware));
 
-  const composer = Config.useReduxDevTools
-    ? composeWithDevTools({ hostname: 'remotedev.io' })
-    : compose;
+  const composer = Config.useReduxDevTools ? composeWithDevTools({}) : compose;
   const store = createStore(rootReducer, composer(...enhancers));
 
   if (ReduxPersist.active) {
