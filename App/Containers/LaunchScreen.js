@@ -9,11 +9,11 @@ import ImageActions, { ImageSelectors } from '../Redux/ImageRedux';
 import styles from './Styles/LaunchScreenStyles';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 
-const { width, height } = Dimensions.get('window');
+const { width: windowWidth, height: windowHeight } = Dimensions.get('window');
 
 const pickerOptions = {
-  width: width,
-  height: height,
+  width: windowWidth,
+  height: windowHeight,
   cropping: true,
   mediaType: 'photo',
   includeBase64: true,
@@ -33,15 +33,15 @@ export class LaunchScreen extends Component {
 
   renderRecent = () => {
     if (!this.props.recent || !this.props.recent.length) {
-      return <Text>No recent images</Text>;
+      return <Text style={styles.noImages}>No recent images</Text>;
     }
     return this.props.recent.map(r => (
       <TouchableOpacity key={v4()} onPress={() => this.pick(r)}>
         <Image
           source={{ uri: r.path }}
           style={{
-            width: 100,
-            height: 100,
+            width: windowWidth / 4,
+            height: windowWidth / 4,
             margin: 2,
             resizeMode: 'cover',
           }}
