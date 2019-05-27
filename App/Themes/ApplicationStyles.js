@@ -18,6 +18,37 @@ const ApplicationStyles = {
       bottom: 0,
       right: 0,
     },
+    header: {
+      flex: 0,
+      justifyContent: 'space-between',
+      flexDirection: 'row',
+      alignItems: 'flex-start',
+    },
+    topRightButton: {
+      flex: 0,
+      alignSelf: 'flex-end',
+      flexDirection: 'row',
+
+      position: 'absolute',
+      top: Metrics.smallMargin,
+      right: Metrics.smallMargin,
+      zIndex: 9999,
+    },
+    topLeftButton: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+    },
+    bottomRightButton: {
+      position: 'absolute',
+      bottom: 0,
+      right: 0,
+    },
+    bottomLeftButton: {
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+    },
     container: {
       flex: 1,
       paddingTop: Metrics.baseMargin,
@@ -41,15 +72,14 @@ const ApplicationStyles = {
       marginHorizontal: Metrics.smallMargin,
     },
     titleText: {
-      ...Fonts.style.h2,
-      fontSize: 14,
-      color: Colors.text,
+      ...Fonts.style.h4,
+      color: Colors.cloud,
     },
     sectionTitle: {
       ...Fonts.style.h4,
       color: Colors.coal,
-      backgroundColor: Colors.ricePaper,
       marginTop: Metrics.smallMargin,
+      paddingHorizontal: Metrics.baseMargin,
       alignItems: 'center',
       textAlign: 'left',
     },

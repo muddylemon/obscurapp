@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
-import { Text, View, Dimensions, Image } from 'react-native';
+import {
+  Text,
+  View,
+  Dimensions,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import { connect } from 'react-redux';
 import { Icon, Button } from 'react-native-elements';
 import { v4 } from 'uuid';
 import ImagePicker from 'react-native-image-crop-picker';
-import colors from '../Themes/Colors';
+
 import ImageActions, { ImageSelectors } from '../Redux/ImageRedux';
 import styles from './Styles/LaunchScreenStyles';
-import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+
+import { Colors } from '../Themes';
 
 const { width: windowWidth, height: windowHeight } = Dimensions.get('window');
 
@@ -21,6 +29,9 @@ const pickerOptions = {
 };
 
 export class LaunchScreen extends Component {
+  goToHelp = () => {
+    this.props.navigation.navigate('HelpScreen');
+  };
   picker = () =>
     ImagePicker.openPicker(pickerOptions)
       .then(this.pick)
@@ -35,17 +46,10 @@ export class LaunchScreen extends Component {
     if (!this.props.recent || !this.props.recent.length) {
       return <Text style={styles.noImages}>No recent images</Text>;
     }
+    const imageSize = windowWidth / 4.5;
     return this.props.recent.map(r => (
       <TouchableOpacity key={v4()} onPress={() => this.pick(r)}>
-        <Image
-          source={{ uri: r.path }}
-          style={{
-            width: windowWidth / 4,
-            height: windowWidth / 4,
-            margin: 2,
-            resizeMode: 'cover',
-          }}
-        />
+        <Image source={{ uri: r.path }} style={styles.recentImage} />
       </TouchableOpacity>
     ));
   };
@@ -53,35 +57,32 @@ export class LaunchScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.heading}>obscur</Text>
-        <View style={styles.section}>
-          <Button
-            title=" Choose an Image"
-            type="solid"
-            onPress={this.picker}
-            icon={
-              <Icon name="image" type="feather" size={25} color={colors.snow} />
-            }
+        <View style={styles.header}>
+          <Text style={styles.heading}>obscur</Text>
+          <Icon
+            name="question"
+            type="antdesign"
+            reverse
+            size={15}
+            color={Colors.facebook}
+            onPress={this.goToHelp}
           />
         </View>
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Recent</Text>
-          <ScrollView>
-            <View style={{ flexDirection: 'row', flex: 1, flexWrap: 'wrap' }}>
-              {this.renderRecent()}
-            </View>
-          </ScrollView>
-        </View>
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>How To Use:</Text>
-          <ScrollView>
-            <Text>1. Select an image from your device</Text>
-            <Text>2. Crop, rotate and scale the image as you like</Text>
-            <Text>
-              3. Hold the device in front of what you're comparing the image to
-            </Text>
-            <Text>4. Tap the Pause button to freeze the live image</Text>
-          </ScrollView>
+
+        <ScrollView>
+          <View style={styles.groupContainer}>{this.renderRecent()}</View>
+        </ScrollView>
+        <View style={styles.pickerButton}>
+          <Text style={styles.titleText}>Choose An Image </Text>
+          <Icon
+            name="plus"
+            type="antdesign"
+            reverse
+            raised
+            size={25}
+            color={Colors.fire}
+            onPress={this.picker}
+          />
         </View>
       </View>
     );

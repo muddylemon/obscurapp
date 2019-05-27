@@ -38,6 +38,10 @@ class ViewerScreen extends Component {
     this.props.navigation.navigate('LaunchScreen');
   };
 
+  goToHelp = () => {
+    this.props.navigation.navigate('HelpScreen');
+  };
+
   onPanGestureEvent = ev => {
     const opacity = 1 - ev.nativeEvent.absoluteY / height;
     this._opacity.setValue(opacity);

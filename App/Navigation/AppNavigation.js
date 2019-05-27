@@ -1,4 +1,5 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
+import HelpScreen from '../Containers/HelpScreen';
 import ViewerScreen from '../Containers/ViewerScreen';
 import LaunchScreen from '../Containers/LaunchScreen';
 
@@ -9,6 +10,7 @@ const PrimaryNav = createStackNavigator(
   {
     ViewerScreen: { screen: ViewerScreen },
     LaunchScreen: { screen: LaunchScreen },
+    HelpScreen: { screen: HelpScreen },
   },
   {
     // Default config for all screens
