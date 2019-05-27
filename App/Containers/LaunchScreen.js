@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { Icon, Button } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 import { v4 } from 'uuid';
 import ImagePicker from 'react-native-image-crop-picker';
 
@@ -16,6 +16,7 @@ import ImageActions, { ImageSelectors } from '../Redux/ImageRedux';
 import styles from './Styles/LaunchScreenStyles';
 
 import { Colors } from '../Themes';
+import Header from '../Components/Header';
 
 const { width: windowWidth, height: windowHeight } = Dimensions.get('window');
 
@@ -29,13 +30,22 @@ const pickerOptions = {
 };
 
 export class LaunchScreen extends Component {
+  state = {
+    isLoading: false,
+  };
   goToHelp = () => {
     this.props.navigation.navigate('HelpScreen');
   };
-  picker = () =>
+  openPicker = () => {
+    this.setState({ isLoading: true });
     ImagePicker.openPicker(pickerOptions)
       .then(this.pick)
-      .catch(e => console.log({ e }));
+      .then(() => this.setState({ isLoading: false }))
+      .catch(e => {
+        this.setState({ isLoading: false });
+        console.log({ e });
+      });
+  };
 
   pick = image => {
     this.props.pickImage(image);
@@ -43,32 +53,37 @@ export class LaunchScreen extends Component {
   };
 
   renderRecent = () => {
-    if (!this.props.recent || !this.props.recent.length) {
+    let { recent } = this.props;
+
+    if (!recent || !recent.length) {
       return <Text style={styles.noImages}>No recent images</Text>;
     }
-    const imageSize = windowWidth / 4.5;
-    return this.props.recent.map(r => (
-      <TouchableOpacity key={v4()} onPress={() => this.pick(r)}>
-        <Image source={{ uri: r.path }} style={styles.recentImage} />
-      </TouchableOpacity>
-    ));
+    if (typeof recent.asMutable !== 'undefined') {
+      recent = recent.asMutable();
+    }
+
+    return recent
+      .sort((a, b) => a.modificationDate < b.modificationDate)
+      .map(r => (
+        <TouchableOpacity key={v4()} onPress={() => this.pick(r)}>
+          <Image source={{ uri: r.path }} style={styles.recentImage} />
+        </TouchableOpacity>
+      ));
   };
 
   render() {
+    if (this.state.isLoading) {
+      return (
+        <View
+          style={{ ...styles.container, opacity: 1, justifyContent: 'center' }}
+        >
+          <Text style={styles.sectionText}>Loading...</Text>
+        </View>
+      );
+    }
     return (
       <View style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.heading}>obscur</Text>
-          <Icon
-            name="question"
-            type="antdesign"
-            reverse
-            size={15}
-            color={Colors.facebook}
-            onPress={this.goToHelp}
-          />
-        </View>
-
+        <Header goToHelp={this.goToHelp} />
         <ScrollView>
           <View style={styles.groupContainer}>{this.renderRecent()}</View>
         </ScrollView>
@@ -81,7 +96,7 @@ export class LaunchScreen extends Component {
             raised
             size={25}
             color={Colors.fire}
-            onPress={this.picker}
+            onPress={this.openPicker}
           />
         </View>
       </View>

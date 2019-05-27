@@ -16,13 +16,8 @@ export default StyleSheet.create({
     zIndex: 9999,
   },
   captureButton: {
-    flex: 0,
     position: 'absolute',
-    borderRadius: 5,
-    padding: 15,
-    paddingHorizontal: 20,
     alignSelf: 'center',
     bottom: 0,
-    margin: 20,
   },
 });

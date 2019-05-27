@@ -19,13 +19,12 @@ export const ImageSelectors = {
 };
 
 export const pickImage = (state, { image }) => {
-  const recent = state.recent || [];
+  let recent = state.recent || [];
 
-  return {
-    ...state,
+  return state.merge({
     image,
     recent: [...new Set([...recent, image])],
-  };
+  });
 };
 
 export const unsetImage = state => state.merge({ image: null });

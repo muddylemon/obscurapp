@@ -69,7 +69,7 @@ class ViewerScreen extends Component {
     return (
       <View style={styles.container}>
         <RNCamera
-          pauseAfterCapture
+          pauseAfterCapture={true}
           captureAudio={false}
           ref={this.ref}
           type={RNCamera.Constants.Type.back}
@@ -108,9 +108,10 @@ class ViewerScreen extends Component {
           </Animated.View>
           <View style={styles.closeButton}>
             <Icon
-              name="arrow-left"
-              type="feather"
+              name="arrowleft"
+              type="antdesign"
               reverse
+              raised
               size={15}
               color={colors.bloodOrange}
               onPress={this.goBack}
@@ -118,11 +119,17 @@ class ViewerScreen extends Component {
           </View>
           <View style={styles.captureButton}>
             <Button
-              title="Pause"
-              type="outline"
+              type="clear"
               onPress={this.onSingleTap}
               icon={
-                <Icon name="pause" type="feather" size={25} color="#517fa4" />
+                <Icon
+                  name="pause"
+                  type="antdesign"
+                  reverse
+                  raised
+                  size={20}
+                  color="#517fa4"
+                />
               }
             />
           </View>
