@@ -8,6 +8,7 @@ import styles from './Styles/ViewerScreenStyle';
 import { RNCamera } from 'react-native-camera';
 import { Icon, Button } from 'react-native-elements';
 import colors from '../Themes/Colors';
+import BackButton from '../Components/BackButton';
 
 const { width, height } = Dimensions.get('window');
 
@@ -46,7 +47,7 @@ class ViewerScreen extends Component {
     this._opacity.setValue(opacity);
   };
 
-  onSingleTap = async () => {
+  capture = async () => {
     if (this.state.preview) {
       this.setState({ preview: null });
       this.camera.resumePreview();
@@ -63,7 +64,7 @@ class ViewerScreen extends Component {
   };
 
   render() {
-    const { image } = this.props;
+    const { image, navigation } = this.props;
 
     return (
       <View style={styles.container}>
@@ -106,27 +107,19 @@ class ViewerScreen extends Component {
             </PanGestureHandler>
           </Animated.View>
           <View style={styles.closeButton}>
-            <Icon
-              name="arrowleft"
-              type="antdesign"
-              reverse
-              raised
-              size={15}
-              color={colors.gold}
-              onPress={this.goBack}
-            />
+            <BackButton navigation={navigation} />
           </View>
           <View style={styles.captureButton}>
             <Button
               type="clear"
-              onPress={this.onSingleTap}
+              onPress={this.capture}
               icon={
                 <Icon
                   name="pause"
                   type="antdesign"
                   reverse
                   raised
-                  size={20}
+                  size={30}
                   color={colors.help}
                 />
               }

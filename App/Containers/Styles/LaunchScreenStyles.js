@@ -18,8 +18,8 @@ export default StyleSheet.create({
     ...Fonts.style.serious,
   },
   recentImage: {
-    width: Metrics.screenWidth / 5 - Metrics.smallMargin * 2,
-    height: Metrics.screenHeight / 5 - Metrics.smallMargin * 2,
+    width: Metrics.screenWidth / 4 - Metrics.smallMargin * 2,
+    height: Metrics.screenHeight / 4 - Metrics.smallMargin * 2,
     margin: 2,
     resizeMode: 'cover',
     borderRadius: 8,

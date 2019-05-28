@@ -1,9 +1,9 @@
 const colors = {
-  navy: 'rgba(1, 22, 39, 1)',
-  red: 'rgba(247, 23, 53, 1)',
-  help: 'rgba(65, 234, 212, 1)',
-  white: 'rgba(253, 255, 252, 1)',
-  gold: 'rgba(255, 159, 28, 1)',
+  navy: 'rgba(29, 53, 87, 1)',
+  red: 'rgba(230, 57, 70, 1)',
+  help: 'rgba(69, 123, 157, 1)',
+  white: 'rgba(241, 250, 238, 1)',
+  gold: 'rgba(231, 162, 46, 1)',
   transparent: 'rgba(0,0,0,0)',
 };
 

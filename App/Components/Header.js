@@ -13,7 +13,7 @@ export const Header = ({ goToHelp }) => (
       name="question"
       type="antdesign"
       reverse
-      size={15}
+      size={20}
       color={Colors.help}
       onPress={goToHelp}
     />

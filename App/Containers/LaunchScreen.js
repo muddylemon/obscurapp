@@ -88,13 +88,12 @@ export class LaunchScreen extends Component {
           <View style={styles.groupContainer}>{this.renderRecent()}</View>
         </ScrollView>
         <View style={styles.pickerButton}>
-          <Text style={styles.titleText}>Choose An Image </Text>
           <Icon
             name="plus"
             type="antdesign"
             reverse
             raised
-            size={25}
+            size={44}
             color={Colors.red}
             onPress={this.openPicker}
           />

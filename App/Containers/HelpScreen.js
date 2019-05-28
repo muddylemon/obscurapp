@@ -7,9 +7,9 @@ export default ({ navigation }) => (
   <View style={styles.mainContainer}>
     <View style={styles.header}>
       <BackButton navigation={navigation} />
-      <Text style={styles.sectionTitle}>How To Use Obscur</Text>
     </View>
     <ScrollView style={styles.container}>
+      <Text style={styles.sectionTitle}>How To Use Obscur</Text>
       <View style={styles.section}>
         <Text>1. Select an image from your device</Text>
         <Text>2. Crop, rotate and scale the image as you like</Text>

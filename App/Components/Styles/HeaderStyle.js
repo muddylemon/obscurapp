@@ -7,5 +7,6 @@ export default StyleSheet.create({
     fontSize: Fonts.size.h1,
     fontFamily: Fonts.type.bold,
     color: Colors.gold,
+    paddingHorizontal: 20,
   },
 });
