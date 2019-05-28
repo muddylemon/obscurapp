@@ -95,7 +95,7 @@ export class LaunchScreen extends Component {
             reverse
             raised
             size={25}
-            color={Colors.fire}
+            color={Colors.red}
             onPress={this.openPicker}
           />
         </View>

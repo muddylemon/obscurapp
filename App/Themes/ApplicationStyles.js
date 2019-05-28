@@ -61,23 +61,23 @@ const ApplicationStyles = {
     sectionText: {
       ...Fonts.style.normal,
       paddingVertical: Metrics.doubleBaseMargin,
-      color: Colors.eggplant,
+      color: Colors.navy,
       marginVertical: Metrics.smallMargin,
       textAlign: 'center',
     },
     subtitle: {
-      color: Colors.eggplant,
+      color: Colors.navy,
       padding: Metrics.smallMargin,
       marginBottom: Metrics.smallMargin,
       marginHorizontal: Metrics.smallMargin,
     },
     titleText: {
       ...Fonts.style.h4,
-      color: Colors.cloud,
+      color: Colors.gold,
     },
     sectionTitle: {
       ...Fonts.style.h4,
-      color: Colors.coal,
+      color: Colors.navy,
       marginTop: Metrics.smallMargin,
       paddingHorizontal: Metrics.baseMargin,
       alignItems: 'center',
@@ -87,13 +87,13 @@ const ApplicationStyles = {
   darkLabelContainer: {
     padding: Metrics.smallMargin,
     paddingBottom: Metrics.doubleBaseMargin,
-    borderBottomColor: Colors.border,
+    borderBottomColor: Colors.navy,
     borderBottomWidth: 1,
     marginBottom: Metrics.baseMargin,
   },
   darkLabel: {
     fontFamily: Fonts.type.bold,
-    color: Colors.snow,
+    color: Colors.white,
   },
   groupContainer: {
     margin: Metrics.smallMargin,

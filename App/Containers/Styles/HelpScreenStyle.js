@@ -6,7 +6,7 @@ export default StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: Colors.silver,
+    backgroundColor: Colors.white,
   },
   closeButton: {
     position: 'absolute',

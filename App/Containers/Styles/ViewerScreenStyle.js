@@ -6,7 +6,7 @@ export default StyleSheet.create({
   ...ApplicationStyles.screen,
   container: {
     ...ApplicationStyles.screen.mainContainer,
-    backgroundColor: colors.snow,
+    backgroundColor: colors.white,
     height: '100%',
   },
   closeButton: {

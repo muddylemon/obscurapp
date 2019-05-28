@@ -27,7 +27,6 @@ class ViewerScreen extends Component {
   constructor(props) {
     super(props);
     this.state = { preview: null };
-    this.tapRef = React.createRef();
     this.panRef = React.createRef();
     this._opacity = new Animated.Value(0.5);
   }
@@ -113,7 +112,7 @@ class ViewerScreen extends Component {
               reverse
               raised
               size={15}
-              color={colors.bloodOrange}
+              color={colors.gold}
               onPress={this.goBack}
             />
           </View>
@@ -128,7 +127,7 @@ class ViewerScreen extends Component {
                   reverse
                   raised
                   size={20}
-                  color="#517fa4"
+                  color={colors.help}
                 />
               }
             />
