@@ -1,5 +1,7 @@
 PODS:
   - QBImagePickerController (3.4.0)
+  - React (0.59.8):
+    - React/Core (= 0.59.8)
   - React/Core (0.59.8):
     - yoga (= 0.59.8.React)
   - React/fishhook (0.59.8)
@@ -28,7 +30,9 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
-  - RNImageCropPicker (0.24.0):
+  - RNCAsyncStorage (1.4.2):
+    - React
+  - RNImageCropPicker (0.24.1):
     - QBImagePickerController
     - React/Core
     - RSKImageCropper
@@ -47,6 +51,7 @@ DEPENDENCIES:
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga/yoga.podspec`)
 
@@ -58,6 +63,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   React:
     :path: "../node_modules/react-native"
+  RNCAsyncStorage:
+    :path: "../node_modules/@react-native-community/async-storage"
   RNImageCropPicker:
     :path: "../node_modules/react-native-image-crop-picker"
   yoga:
@@ -66,10 +73,11 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   React: 76e6aa2b87d05eb6cccb6926d72685c9a07df152
-  RNImageCropPicker: 1f22116cbcee5c66f0dea776eb114269afd91b90
+  RNCAsyncStorage: 0d2b0cf659d2def90d8ed7de76f502d335268156
+  RNImageCropPicker: 6134b66a3d5bc13e2895a97c630a4254006902b4
   RSKImageCropper: 98296ad26b41753f796b6898d015509598f13d97
   yoga: 92b2102c3d373d1a790db4ab761d2b0ffc634f64
 
-PODFILE CHECKSUM: 77f28618280f55a453c08feb326d874a4305e763
+PODFILE CHECKSUM: b2d68d855d5f48977cd8ed8c50562d5ed8eb53af
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.7.0

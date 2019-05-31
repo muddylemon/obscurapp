@@ -29,7 +29,7 @@ const updateReducers = (store: Object) => {
       }
     })
     .catch(() => {
-      persistStore(store, null, startup);
+      persistStore(store, null);
       AsyncStorage.setItem('reducerVersion', reducerVersion);
     });
 };

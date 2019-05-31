@@ -1,6 +1,6 @@
-import Fonts from './Fonts';
-import Metrics from './Metrics';
-import Colors from './Colors';
+import Fonts from './Fonts'
+import Metrics from './Metrics'
+import Colors from './Colors'
 
 // This file is for a reusable grouping of Theme items.
 // Similar to an XML fragment layout in Android
@@ -9,20 +9,20 @@ const ApplicationStyles = {
   screen: {
     mainContainer: {
       flex: 1,
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.transparent
     },
     backgroundImage: {
       position: 'absolute',
       top: 0,
       left: 0,
       bottom: 0,
-      right: 0,
+      right: 0
     },
     header: {
       flex: 0,
       justifyContent: 'space-between',
       flexDirection: 'row',
-      alignItems: 'flex-start',
+      alignItems: 'flex-start'
     },
     topRightButton: {
       flex: 0,
@@ -32,48 +32,48 @@ const ApplicationStyles = {
       position: 'absolute',
       top: Metrics.smallMargin,
       right: Metrics.smallMargin,
-      zIndex: 9999,
+      zIndex: 9999
     },
     topLeftButton: {
       position: 'absolute',
       top: 0,
-      left: 0,
+      left: 0
     },
     bottomRightButton: {
       position: 'absolute',
       bottom: 0,
-      right: 0,
+      right: 0
     },
     bottomLeftButton: {
       position: 'absolute',
       bottom: 0,
-      left: 0,
+      left: 0
     },
     container: {
       flex: 1,
       paddingTop: Metrics.baseMargin,
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.transparent
     },
     section: {
       margin: Metrics.section,
-      padding: Metrics.baseMargin,
+      padding: Metrics.baseMargin
     },
     sectionText: {
       ...Fonts.style.normal,
       paddingVertical: Metrics.doubleBaseMargin,
       color: Colors.navy,
       marginVertical: Metrics.smallMargin,
-      textAlign: 'center',
+      textAlign: 'center'
     },
     subtitle: {
       color: Colors.navy,
       padding: Metrics.smallMargin,
       marginBottom: Metrics.smallMargin,
-      marginHorizontal: Metrics.smallMargin,
+      marginHorizontal: Metrics.smallMargin
     },
     titleText: {
       ...Fonts.style.h4,
-      color: Colors.gold,
+      color: Colors.gold
     },
     sectionTitle: {
       ...Fonts.style.h4,
@@ -81,26 +81,26 @@ const ApplicationStyles = {
       marginTop: Metrics.smallMargin,
       paddingHorizontal: Metrics.baseMargin,
       alignItems: 'center',
-      textAlign: 'left',
-    },
+      textAlign: 'left'
+    }
   },
   darkLabelContainer: {
     padding: Metrics.smallMargin,
     paddingBottom: Metrics.doubleBaseMargin,
     borderBottomColor: Colors.navy,
     borderBottomWidth: 1,
-    marginBottom: Metrics.baseMargin,
+    marginBottom: Metrics.baseMargin
   },
   darkLabel: {
     fontFamily: Fonts.type.bold,
-    color: Colors.white,
+    color: Colors.white
   },
   groupContainer: {
     margin: Metrics.smallMargin,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    alignItems: 'center',
-  },
-};
+    alignItems: 'center'
+  }
+}
 
-export default ApplicationStyles;
+export default ApplicationStyles

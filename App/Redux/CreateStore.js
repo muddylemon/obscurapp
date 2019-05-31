@@ -1,40 +1,40 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import Rehydration from '../Services/Rehydration';
-import ReduxPersist from '../Config/ReduxPersist';
-import { composeWithDevTools } from 'remote-redux-devtools';
-import Config from '../Config/DebugConfig';
-import ScreenTracking from './ScreenTrackingMiddleware';
-import { createReactNavigationReduxMiddleware } from 'react-navigation-redux-helpers';
+import { createStore, applyMiddleware, compose } from 'redux'
+import Rehydration from '../Services/Rehydration'
+import ReduxPersist from '../Config/ReduxPersist'
+import { composeWithDevTools } from 'remote-redux-devtools'
+import Config from '../Config/DebugConfig'
+import ScreenTracking from './ScreenTrackingMiddleware'
+import { createReactNavigationReduxMiddleware } from 'react-navigation-redux-helpers'
 
 // creates the store
 export default rootReducer => {
   /* ------------- Redux Configuration ------------- */
 
-  const middleware = [];
-  const enhancers = [];
+  const middleware = []
+  const enhancers = []
 
   /* ------------- Navigation Middleware ------------ */
   const navigationMiddleware = createReactNavigationReduxMiddleware(
     'root',
     state => state.nav
-  );
-  middleware.push(navigationMiddleware);
+  )
+  middleware.push(navigationMiddleware)
 
   /* ------------- Analytics Middleware ------------- */
-  middleware.push(ScreenTracking);
+  middleware.push(ScreenTracking)
 
   /* ------------- Assemble Middleware ------------- */
 
-  enhancers.push(applyMiddleware(...middleware));
+  enhancers.push(applyMiddleware(...middleware))
 
-  const composer = Config.useReduxDevTools ? composeWithDevTools({}) : compose;
-  const store = createStore(rootReducer, composer(...enhancers));
+  const composer = Config.useReduxDevTools ? composeWithDevTools({}) : compose
+  const store = createStore(rootReducer, composer(...enhancers))
 
   if (ReduxPersist.active) {
-    Rehydration.updateReducers(store);
+    Rehydration.updateReducers(store)
   }
 
   return {
-    store,
-  };
-};
+    store
+  }
+}

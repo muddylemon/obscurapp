@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { ScrollView, Text, View } from 'react-native';
-import styles from './Styles/HelpScreenStyle';
-import BackButton from '../Components/BackButton';
+import React from 'react'
+import { ScrollView, Text, View } from 'react-native'
+import styles from './Styles/HelpScreenStyle'
+import BackButton from '../Components/BackButton'
 
 export default ({ navigation }) => (
   <View style={styles.mainContainer}>
@@ -19,4 +19,4 @@ export default ({ navigation }) => (
       </View>
     </ScrollView>
   </View>
-);
+)

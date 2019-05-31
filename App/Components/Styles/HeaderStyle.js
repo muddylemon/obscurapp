@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import { ApplicationStyles, Fonts, Colors } from '../../Themes/';
+import { StyleSheet } from 'react-native'
+import { ApplicationStyles, Fonts, Colors } from '../../Themes/'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
@@ -7,6 +7,6 @@ export default StyleSheet.create({
     fontSize: Fonts.size.h1,
     fontFamily: Fonts.type.bold,
     color: Colors.gold,
-    paddingHorizontal: 20,
-  },
-});
+    paddingHorizontal: 20
+  }
+})
