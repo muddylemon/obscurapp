@@ -1,5 +1,5 @@
 import ReduxPersist from '../Config/ReduxPersist';
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import { persistStore } from 'redux-persist';
 import DebugConfig from '../Config/DebugConfig';
 
@@ -10,17 +10,15 @@ const updateReducers = (store: Object) => {
   AsyncStorage.getItem('reducerVersion')
     .then(localVersion => {
       if (localVersion !== reducerVersion) {
-        if (DebugConfig.useReactotron) {
-          console.log({
-            name: 'PURGE',
-            value: {
-              'Old Version:': localVersion,
-              'New Version:': reducerVersion,
-            },
-            preview: 'Reducer Version Change Detected',
-            important: true,
-          });
-        }
+        console.log({
+          name: 'PURGE',
+          value: {
+            'Old Version:': localVersion,
+            'New Version:': reducerVersion,
+          },
+          preview: 'Reducer Version Change Detected',
+          important: true,
+        });
         // Purge store
         persistStore(store, null).purge();
         AsyncStorage.setItem('reducerVersion', reducerVersion);
