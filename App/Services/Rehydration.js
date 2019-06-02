@@ -1,7 +1,6 @@
 import ReduxPersist from '../Config/ReduxPersist';
 import AsyncStorage from '@react-native-community/async-storage';
 import { persistStore } from 'redux-persist';
-import DebugConfig from '../Config/DebugConfig';
 
 const updateReducers = (store: Object) => {
   const reducerVersion = ReduxPersist.reducerVersion;
