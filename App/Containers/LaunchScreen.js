@@ -21,7 +21,7 @@ import styles from './Styles/LaunchScreenStyles';
 import { Colors } from '../Themes';
 import Header from '../Components/Header';
 
-const { width: windowWidth, height: windowHeight } = Dimensions.get('window');
+const { width: windowWidth, height: windowHeight } = Dimensions.get('screen');
 
 const pickerOptions = {
   width: windowWidth,
@@ -45,7 +45,7 @@ export class LaunchScreen extends Component {
   };
   openPicker = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
-
+    console.log({ pickerOptions });
     this.setState({ isLoading: true });
     ImagePicker.openPicker(pickerOptions)
       .then(this.pick)
@@ -67,23 +67,27 @@ export class LaunchScreen extends Component {
     this.props.navigation.navigate('ViewerScreen');
   };
 
-  renderRecent = () => {
+  sortedRecent = () => {
     let { recent } = this.props;
-
-    if (!recent || !recent.length) {
-      return <Text style={styles.noImages}>No recent images</Text>;
-    }
     if (typeof recent.asMutable !== 'undefined') {
       recent = recent.asMutable();
     }
 
-    return recent
-      .sort((a, b) => a.modificationDate < b.modificationDate)
-      .map(r => (
-        <TouchableOpacity key={v4()} onPress={() => this.pick(r)}>
-          <Image source={{ uri: r.path }} style={styles.recentImage} />
-        </TouchableOpacity>
-      ));
+    return recent.sort((a, b) => a.creationDate < b.creationDate);
+  };
+
+  renderRecent = () => {
+    const recent = this.sortedRecent();
+
+    if (!recent || !recent.length) {
+      return <Text style={styles.noImages}>No recent images</Text>;
+    }
+
+    return recent.map(r => (
+      <TouchableOpacity key={v4()} onPress={() => this.pick(r)}>
+        <Image source={{ uri: r.path }} style={styles.recentImage} />
+      </TouchableOpacity>
+    ));
   };
 
   render() {

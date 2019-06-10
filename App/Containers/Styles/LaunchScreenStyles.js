@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native'
-import { Metrics, ApplicationStyles, Fonts } from '../../Themes/'
-import colors from '../../Themes/Colors'
+import { StyleSheet } from 'react-native';
+import { Metrics, ApplicationStyles, Fonts } from '../../Themes/';
+import colors from '../../Themes/Colors';
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
@@ -8,21 +8,22 @@ export default StyleSheet.create({
     height: '100%',
     justifyContent: 'flex-start',
     paddingBottom: Metrics.baseMargin,
-    backgroundColor: colors.white
+    backgroundColor: colors.white,
   },
   heading: {
     fontSize: 40,
-    fontFamily: Fonts.type.bold
+    fontFamily: Fonts.type.bold,
   },
   noImages: {
-    ...Fonts.style.serious
+    ...Fonts.style.serious,
   },
   recentImage: {
     width: Metrics.screenWidth / 4 - Metrics.smallMargin * 2,
     height: Metrics.screenHeight / 4 - Metrics.smallMargin * 2,
     margin: 2,
     resizeMode: 'cover',
-    borderRadius: 8
+    borderRadius: 8,
+    backgroundColor: colors.gold,
   },
   pickerButton: {
     flex: 0,
@@ -33,22 +34,22 @@ export default StyleSheet.create({
     alignSelf: 'flex-end',
     margin: Metrics.baseMargin,
     bottom: 0,
-    right: 0
+    right: 0,
   },
   logo: {
     marginTop: Metrics.doubleSection,
     height: Metrics.images.logo,
     width: Metrics.images.logo,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
   centered: {
-    alignItems: 'center'
+    alignItems: 'center',
   },
   groupContainer: {
     margin: Metrics.smallMargin,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    flexWrap: 'wrap'
-  }
-})
+    flexWrap: 'wrap',
+  },
+});

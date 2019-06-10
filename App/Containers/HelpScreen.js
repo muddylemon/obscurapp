@@ -1,10 +1,10 @@
-import React from 'react'
-import { ScrollView, Text, View } from 'react-native'
-import styles from './Styles/HelpScreenStyle'
-import BackButton from '../Components/BackButton'
+import React from 'react';
+import { ScrollView, Text, View, SafeAreaView } from 'react-native';
+import styles from './Styles/HelpScreenStyle';
+import BackButton from '../Components/BackButton';
 
 export default ({ navigation }) => (
-  <View style={styles.mainContainer}>
+  <SafeAreaView style={styles.mainContainer}>
     <View style={styles.header}>
       <BackButton navigation={navigation} />
     </View>
@@ -18,5 +18,5 @@ export default ({ navigation }) => (
         <Text>5. Drag your finger up and down to change the opacity</Text>
       </View>
     </ScrollView>
-  </View>
-)
+  </SafeAreaView>
+);
