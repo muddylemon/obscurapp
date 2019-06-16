@@ -20,6 +20,7 @@ import styles from './Styles/LaunchScreenStyles';
 
 import { Colors } from '../Themes';
 import Header from '../Components/Header';
+import Loading from '../Components/Loading';
 
 const { width: windowWidth, height: windowHeight } = Dimensions.get('screen');
 
@@ -51,7 +52,6 @@ export class LaunchScreen extends Component {
       .then(this.pick)
       .then(() => {
         LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
-
         this.setState({ isLoading: false });
       })
       .catch(e => {
@@ -85,20 +85,17 @@ export class LaunchScreen extends Component {
 
     return recent.map(r => (
       <TouchableOpacity key={v4()} onPress={() => this.pick(r)}>
-        <Image source={{ uri: r.path }} style={styles.recentImage} />
+        <Image
+          source={{ uri: r.path || r.sourceURI }}
+          style={styles.recentImage}
+        />
       </TouchableOpacity>
     ));
   };
 
   render() {
     if (this.state.isLoading) {
-      return (
-        <View
-          style={{ ...styles.container, opacity: 1, justifyContent: 'center' }}
-        >
-          <Text style={styles.sectionText}>Loading...</Text>
-        </View>
-      );
+      return <Loading />;
     }
     return (
       <View style={styles.container}>
