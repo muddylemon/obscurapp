@@ -88,6 +88,7 @@ export class LaunchScreen extends Component {
         <Image
           source={{ uri: r.path || r.sourceURI }}
           style={styles.recentImage}
+          resizeMethod={'scale'}
         />
       </TouchableOpacity>
     ));
