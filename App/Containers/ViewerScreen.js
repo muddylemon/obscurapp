@@ -12,8 +12,8 @@ import BackButton from '../Components/BackButton';
 
 const { width, height } = Dimensions.get('window');
 
-const makeURI = ({ mime, base64 = null, data = null }) =>
-  `data:${mime};base64,${base64 || data}`;
+const makeURI = ({ uri, mime, base64 = null, data = null }) =>
+  uri || `data:${mime};base64,${base64 || data}`;
 
 const pictureOptions = {
   quality: 0.8,
@@ -65,7 +65,7 @@ class ViewerScreen extends Component {
 
   render() {
     const { image, navigation } = this.props;
-
+    console.log(this.state.preview);
     return (
       <View style={styles.container}>
         <RNCamera
