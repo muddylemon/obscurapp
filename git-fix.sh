@@ -8,12 +8,13 @@ fix() {
 
   ticket="$1"
 
-if [[ $(git diff --stat) != '' ]]; then
-    echo "You need to commit or stash this stuff"
-    git status -s
-    return
-  fi
+# if [[ $(git diff --stat) != '' ]]; then
+#     echo "You need to commit or stash this stuff"
+#     git status -s
+#     return
+#   fi
 
+  echo "Tagging this commit with build_$ticket"
   git tag build_$ticket
 
 
