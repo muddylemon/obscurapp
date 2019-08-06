@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Dimensions, Animated, Image } from 'react-native';
+import { View, Dimensions, Animated, Image, SafeAreaView } from 'react-native';
 import { PanGestureHandler } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 import { ImageSelectors } from '../Redux/ImageRedux';
@@ -32,7 +32,9 @@ class ViewerScreen extends Component {
     this._opacity = new Animated.Value(0.5);
   }
 
-  ref = cam => (this.camera = cam);
+  ref = cam => {
+    this.camera = cam;
+  };
 
   goBack = () => {
     this.props.navigation.navigate('LaunchScreen');
@@ -65,7 +67,6 @@ class ViewerScreen extends Component {
 
   render() {
     const { image, navigation } = this.props;
-    console.log(this.state.preview);
     return (
       <View style={styles.container}>
         <RNCamera
@@ -102,10 +103,10 @@ class ViewerScreen extends Component {
               />
             </PanGestureHandler>
           </Animated.View>
-          <View style={styles.closeButton}>
+          <SafeAreaView style={styles.closeButton}>
             <BackButton navigation={navigation} />
-          </View>
-          <View style={styles.captureButton}>
+          </SafeAreaView>
+          <SafeAreaView style={styles.captureButton}>
             <Button
               type="clear"
               onPress={this.capture}
@@ -120,7 +121,7 @@ class ViewerScreen extends Component {
                 />
               }
             />
-          </View>
+          </SafeAreaView>
         </RNCamera>
       </View>
     );

@@ -9,6 +9,7 @@ import {
   Platform,
   LayoutAnimation,
   UIManager,
+  SafeAreaView,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Icon } from 'react-native-elements';
@@ -22,15 +23,14 @@ import { Colors } from '../Themes';
 import Header from '../Components/Header';
 import Loading from '../Components/Loading';
 
-const { width: windowWidth, height: windowHeight } = Dimensions.get('screen');
-
+const { width: windowWidth, height: windowHeight } = Dimensions.get('window');
 const pickerOptions = {
   width: windowWidth,
   height: windowHeight,
   cropping: true,
   mediaType: 'photo',
   includeBase64: true,
-  avoidEmptySpaceAroundImage: false,
+  avoidEmptySpaceAroundImage: true,
 };
 
 if (Platform.OS === 'android') {
@@ -63,6 +63,7 @@ export class LaunchScreen extends Component {
   };
 
   pick = image => {
+    console.log({ image });
     this.props.pickImage(image);
     this.props.navigation.navigate('ViewerScreen');
   };
@@ -99,7 +100,7 @@ export class LaunchScreen extends Component {
       return <Loading />;
     }
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <Header goToHelp={this.goToHelp} />
         <ScrollView>
           <View style={styles.groupContainer}>{this.renderRecent()}</View>
@@ -115,7 +116,7 @@ export class LaunchScreen extends Component {
             onPress={this.openPicker}
           />
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }
