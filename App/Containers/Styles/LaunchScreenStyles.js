@@ -8,14 +8,15 @@ export default StyleSheet.create({
     height: '100%',
     justifyContent: 'flex-start',
     paddingBottom: Metrics.baseMargin,
-    backgroundColor: colors.white,
+    backgroundColor: colors.white
   },
   heading: {
     fontSize: 40,
-    fontFamily: Fonts.type.bold,
+    fontFamily: Fonts.type.bold
   },
   noImages: {
     ...Fonts.style.serious,
+    paddingHorizontal: Metrics.baseMargin * 2
   },
   recentImage: {
     width: Metrics.screenWidth / 4 - Metrics.smallMargin * 2,
@@ -23,7 +24,7 @@ export default StyleSheet.create({
     margin: 2,
     resizeMode: 'cover',
     borderRadius: 8,
-    backgroundColor: colors.gold,
+    backgroundColor: colors.gold
   },
   pickerButton: {
     flex: 0,
@@ -34,22 +35,22 @@ export default StyleSheet.create({
     alignSelf: 'flex-end',
     margin: Metrics.baseMargin,
     bottom: 0,
-    right: 0,
+    right: 0
   },
   logo: {
     marginTop: Metrics.doubleSection,
     height: Metrics.images.logo,
     width: Metrics.images.logo,
-    resizeMode: 'contain',
+    resizeMode: 'contain'
   },
   centered: {
-    alignItems: 'center',
+    alignItems: 'center'
   },
   groupContainer: {
     margin: Metrics.smallMargin,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    flexWrap: 'wrap',
-  },
+    flexWrap: 'wrap'
+  }
 });
